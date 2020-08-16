@@ -1,4 +1,4 @@
-# Copyright (C) 2020 Intel Corporation
+q# Copyright (C) 2020 Intel Corporation
 #
 # SPDX-License-Identifier: MIT
 
@@ -75,13 +75,12 @@ columns = ('batch', 'arch', 'prefix', 'function', 'threads', 'dtype', 'size',
 # Time fit and predict
 fit_time, _ = measure_function_time(clf.fit, X_train, y_train, params=params)
 params.sv_len = clf.support_.shape[0]
-y_pred = clf.predict(X_train)
-train_acc = 100 * accuracy_score(y_pred, y_train)
-
-print("params.sv_len: ", params.sv_len)
 
 predict_time, y_pred = measure_function_time(
-    clf.predict, X_test, params=params)
+    clf.predict, X_train, params=params)
+train_acc = 100 * accuracy_score(y_pred, y_train)
+
+y_pred = clf.predict(X_test)
 test_acc = 100 * accuracy_score(y_pred, y_test)
 
 print_output(library='cuml', algorithm='svc',

@@ -28,7 +28,7 @@ print(X_train.shape, X_test.shape, y_train.shape, y_test.shape)
 
 # Create our regression object
 regr = Lasso(fit_intercept=params.fit_intercept, alpha=params.alpha,
-                        tol=params.tol, max_iter=params.maxiter, copy_X=False)
+             tol=params.tol, max_iter=params.maxiter, copy_X=False)
 
 columns = ('batch', 'arch', 'prefix', 'function', 'threads', 'dtype', 'size',
            'time')
@@ -41,7 +41,8 @@ print('X_train.shape: ', X_train.shape)
 print('iter: ', regr.n_iter_)
 
 # Time predict
-predict_time, pred_train = measure_function_time(regr.predict, X_train, params=params)
+predict_time, pred_train = measure_function_time(
+    regr.predict, X_train, params=params)
 
 train_rmse = rmse_score(pred_train, y_train)
 pred_test = regr.predict(X_test)

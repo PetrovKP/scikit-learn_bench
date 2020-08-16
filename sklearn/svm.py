@@ -82,14 +82,14 @@ params.sv_len = clf.support_.shape[0]
 
 predict_time, y_pred = measure_function_time(
     clf.predict, X_train, params=params)
-train_acc = 100 * accuracy_score(y_pred, y_test)
+train_acc = 100 * accuracy_score(y_pred, y_train)
 
 y_pred = clf.predict(X_test)
-test_acc = 100 * accuracy_score(y_pred, y_train)
+test_acc = 100 * accuracy_score(y_pred, y_test)
 
 print_output(library='sklearn', algorithm='svc',
              stages=['training', 'prediction'], columns=columns,
              params=params, functions=['SVM.fit', 'SVM.predict'],
              times=[fit_time, predict_time], accuracy_type='accuracy[%]',
-             accuracies=[train_acc, test_acc], data=[X_train, X_test],
+             accuracies=[train_acc, test_acc], data=[X_train, X_train],
              alg_instance=clf)
