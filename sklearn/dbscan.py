@@ -37,12 +37,6 @@ labels = dbscan.labels_
 print(len(dbscan.core_sample_indices_))
 print(X.shape)
 
-import numpy as np
-print(np.unique(labels))
-print(labels[:10])
-
-print(X.shape)
-
 params.n_clusters = len(set(labels)) - (1 if -1 in labels else 0)
 acc = davies_bouldin_score(X, labels)
 
