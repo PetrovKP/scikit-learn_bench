@@ -10,7 +10,7 @@ from sklearn.linear_model import ElasticNet
 
 parser = argparse.ArgumentParser(description='scikit-learn elastic-net regression '
                                              'benchmark')
-parser.add_argument('--no-fit-intercept', dest='fit_intercept', default=True,
+parser.add_argument('--no-fit-intercept', dest='fit_intercept', default=False,
                     action='store_false',
                     help="Don't fit intercept (assume data already centered)")
 parser.add_argument('--alpha', dest='alpha', type=float, default=1.0,
@@ -47,7 +47,7 @@ predict_time, pred_train = measure_function_time(regr.predict, X_train, params=p
 
 train_rmse = rmse_score(pred_train, y_train)
 pred_test = regr.predict(X_test)
-test_rmse = rmse_score(yp, y_test)
+test_rmse = rmse_score(pred_test, y_test)
 
 print_output(library='sklearn', algorithm='elastic-net',
              stages=['training', 'prediction'], columns=columns,
